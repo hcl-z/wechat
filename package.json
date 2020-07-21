@@ -8,9 +8,26 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "axios": "^0.19.2",
+    "body-parser": "^1.19.0",
     "core-js": "^3.6.5",
+    "cropperjs": "^1.5.7",
+    "express": "^4.17.1",
+    "font-awesome": "^4.7.0",
+    "grade-js": "^1.0.10",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.9.16",
+    "multer": "^1.4.2",
+    "mysql": "^2.18.1",
+    "mysql2": "^2.1.0",
+    "recorderx": "^2.0.2",
+    "socket.io": "^2.3.0",
+    "socket.io-client": "^2.3.0",
+    "underscore": "^1.10.2",
     "vue": "^2.6.11",
-    "vue-router": "^3.2.0"
+    "vue-cropperjs": "^4.1.0",
+    "vue-router": "^3.2.0",
+    "vue-socket.io": "^3.0.9"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.4.0",

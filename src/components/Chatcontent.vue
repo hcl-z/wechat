@@ -1,57 +1,62 @@
 <template>
   <div class="content">
-    <div class="msgbox" ref="con">
-      <div class="msgto">{{ currentuser }}</div>
-      <Msgbox v-for='item in msglist' :key='item.id' :type="item.type" src="http://localhost:8080/img/%E5%A4%A7%E5%A8%83.738d70c1.jpg">{{item.content}}</Msgbox>
+    
+    <div class="msgto">{{ currentuser.name }}</div>
+    <slot></slot>
+    <div class="msgbox"  v-for="item in msglist" :key=item.index>
+      <div v-if="item.type=='me'" class="right">
+        <span v-if="item.mine=='text'">
+          {{item.content}}
+        </span>
+        <span v-else-if="item.mine=='audio'">
+          <audio :src="item.content" controls></audio>
+        </span>
+        <img :src='src' />
+      </div>
+      <div v-else-if="item.type=='he'" class="left">
+        <img :src="currentuser.headimg"  />
+        <span v-if="item.mine=='text'">
+          {{item.content}}
+        </span>
+        <span v-else-if="item.mine=='audio'">
+          <audio :src="item.content" controls></audio>
+        </span>
+      </div>
+      
     </div>
-    <Chartinput height="30%" @sendmsg="send"></Chartinput>
+    
   </div>
 </template>
 
 <script>
-import Chartinput from "./Chartinput";
-import Msgbox from "./Msgbox";
+
 export default {
   data() {
     return {
-      msglist: [
-        { id: 1, type: "me", content: "ddcfdsfvs" },
-        { id: 2, type: "he", content: "ddcfdsfvs" },
-        { id: 3, type: "me", content: "ddc ccfdsfvs" },
-        { id: 4, type: "he", content: "ddcfdsfzxvs" },
-        { id: 5, type: "he", content: "ddcfdscccfvs" },
-        { id: 6, type: "me", content: "ddcfdczxcsfvs" },
-        { id: 7, type: "me", content: "ddcfdczcsfvs" }
-      ]
+      src:sessionStorage.getItem('imgsrc')
     };
   },
-  components: { Chartinput, Msgbox },
-  props: ["currentuser"],
-  methods: {
-    send(m) {
-      this.msglist.push({id: this.msglist.length+1, type: "me", content: m})
-      setTimeout(() => {
-          this.$refs.con.scrollTop+=100
-      }, 10);
-    }
-  }
+  props: ["currentuser", "msglist"]
 };
 </script>
 <style scoped>
+audio{
+}
 .content {
-  width: 70%;
+  width: 100%;
   height: 100%;
   background: darkturquoise;
   display: inline-block;
+  overflow: auto;
 }
 .content .msgbox {
   width: 100%;
-  height: 70%;
+  min-height: 50px;
   overflow: auto;
 }
 .msgto {
   position: fixed;
-  top:0;
+  top: 0;
   text-align: center;
   display: inline-block;
   width: 70%;
@@ -63,4 +68,34 @@ export default {
   height: 30%;
   background: darkseagreen;
 }
+.left{
+        display: flex;
+        justify-content: flex-start;
+    }
+    .right{
+        display: flex;
+        justify-content: flex-end;
+    }
+    .left,.right{
+        display: flex;
+        align-items: center;
+        padding:10px 20px;
+    }
+    .left span,.right span{
+       background-color: rgb(159, 53, 168);
+       display: inline-block;
+       border-radius: 10px;
+       max-width: 200px;
+       overflow: hidden;
+       white-space:pre-wrap;
+       word-wrap : break-word ;
+       padding:5px 10px;
+       margin:0 10px;
+       color:white;
+    }
+    .left img,.right img{
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+    }
 </style>

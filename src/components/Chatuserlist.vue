@@ -2,11 +2,12 @@
   <div class="content">
     <ul>
       <li v-for="item in userlist" :key="item.key" @click=chooseuser(item.id)>
-        <img :src="item.imgurl" />
+        <img :src="item.headerimg" />
         <div class="msgbox">
           <span>{{item.name}}</span>
           <span>hello</span>
         </div>
+        <span style='flex:1;text-align:end;padding-right:20px'>{{item.isonline==true?'在线':'离线'}}</span>
       </li>
     </ul>
   </div>
@@ -29,7 +30,7 @@ export default {
     .content {
     display: inline-block;
     height: 100%;
-    width: 30%;
+    width: 100%;
     background: darkgrey;
     }
     ul {
