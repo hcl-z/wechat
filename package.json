@@ -23,7 +23,7 @@
     "recorderx": "^2.0.2",
     "socket.io": "^2.3.0",
     "socket.io-client": "^2.3.0",
-    "underscore": "^1.10.2",
+    "underscore": "^1.12.1",
     "vue": "^2.6.11",
     "vue-cropperjs": "^4.1.0",
     "vue-router": "^3.2.0",
